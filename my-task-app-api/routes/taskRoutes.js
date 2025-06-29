@@ -86,8 +86,10 @@ router
 router.post('/', validateCreateTask, async (req, res) => {
   try {
     const taskData = req.body;
-    const docRef = await db.collection('tasks').add(taskData);
-    res.status(201).json({ taskId: docRef.id, ...taskData });
+    const completedTaskData = { ...taskData, status: 'incomplete' };
+
+    const docRef = await db.collection('tasks').add(completedTaskData);
+    res.status(201).json({ taskId: docRef.id, ...completedTaskData });
   } catch (err) {
     console.error(err);
     res

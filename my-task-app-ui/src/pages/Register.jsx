@@ -1,12 +1,14 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { register } from '../auth/auth'; // auth helpers we'll update
+import { useAuth } from '../auth/AuthProvider'; // Adjust path as needed
 
 function Register() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const navigate = useNavigate();
+
+  const { register } = useAuth();
 
   const handleSubmit = (e) => {
     e.preventDefault();

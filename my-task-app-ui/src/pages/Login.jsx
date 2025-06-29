@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { login, isAuthenticated } from '../auth/auth';
+import { useAuth } from '../auth/AuthProvider';
 
 function Login() {
   const [username, setUsername] = useState('');
@@ -8,9 +8,11 @@ function Login() {
   const [error, setError] = useState('');
   const navigate = useNavigate();
 
+  const { login, isAuthenticated } = useAuth();
+
   React.useEffect(() => {
     if (isAuthenticated()) {
-      navigate('/dashboard');
+      navigate('/');
     }
   }, [navigate]);
 
@@ -19,7 +21,7 @@ function Login() {
     const success = login(username, password);
 
     if (success) {
-      navigate('/dashboard');
+      navigate('/');
     } else {
       setError('Invalid username or password');
     }
