@@ -117,7 +117,7 @@ function AssignTaskForm() {
       </div>
 
       <button
-        className="btn btn-primary border border-2 border-primary fw-bold"
+        className="btn btn-warning border border-2 border-warning fw-bold"
         type="submit">
         Update Task
       </button>
