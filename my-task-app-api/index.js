@@ -2,13 +2,20 @@
 
 const express = require('express');
 const cors = require('cors');
+const tasksRouter = require('./routes/taskRoutes');
 
-const serverPort = 8000;
 const app = express();
 
 app.use(express.json());
 app.use(cors());
 
-app.listen(serverPort, async () => {
-  console.log(`Server started on port ${serverPort}`);
+// authentication server logic
+//app.use('/api/auth', authRoutes);
+
+// tasks server logic
+app.use('/api/tasks', tasksRouter);
+
+const PORT = process.env.PORT || 8000;
+app.listen(PORT, async () => {
+  console.log(`Server started on port ${PORT}`);
 });
