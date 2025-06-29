@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { getAllTasks } from '../api/taskService';
+import { getAllTasks, deleteTask } from '../api/taskService';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../auth/AuthProvider'; // your auth context path
 import TaskShowcase from '../components/TaskShowcase';
@@ -11,7 +11,7 @@ function Dashboard() {
   const [error, setError] = useState(null);
   const navigate = useNavigate();
 
-  const { tasks, setTasks, updateTaskInList } = useTaskContext();
+  const { tasks, setTasks } = useTaskContext();
   const { isAuthenticated } = useAuth();
 
   useEffect(() => {
@@ -26,6 +26,18 @@ function Dashboard() {
     } catch (err) {
       setError('Failed to load tasks');
       setLoading(false);
+    }
+  };
+
+  const handleRemove = async (taskId) => {
+    if (!window.confirm('Delete this task?')) return;
+
+    try {
+      await deleteTask(taskId);
+      setTasks((prev) => prev.filter((task) => task.taskId !== taskId));
+    } catch (err) {
+      console.error(err);
+      alert('Failed to delete task');
     }
   };
 
@@ -48,6 +60,7 @@ function Dashboard() {
           </button>
         </div>
       )}
+
       <div className="d-flex justify-content-center align-items-start flex-wrap gap-4">
         <TaskShowcase
           name="Inbox"
@@ -57,6 +70,7 @@ function Dashboard() {
               task.status !== 'complete' &&
               task.priority != 'high'
           )} // tasks not assigned yet
+          onDelete={handleRemove}
         />
         <TaskShowcase
           name="Urgent"
@@ -66,16 +80,19 @@ function Dashboard() {
               task.status !== 'complete' &&
               !task.assignedUser
           )} // urgent, unassigned & incomplete tasks
+          onDelete={handleRemove}
         />
         <TaskShowcase
           name="Assigned"
           tasks={tasks.filter(
             (task) => task.assignedUser && task.status !== 'complete'
           )} // assigned & not complete
+          onDelete={handleRemove}
         />
         <TaskShowcase
           name="Completed"
           tasks={tasks.filter((task) => task.status === 'complete')} // completed tasks
+          onDelete={handleRemove}
         />
       </div>
     </div>

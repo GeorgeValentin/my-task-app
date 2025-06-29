@@ -1,13 +1,16 @@
 .task-showcase-container {
-  border: 1.5px solid black;
+  border: 1px solid black;
   width: 40% !important;
 }
 
 .task-showcase {
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
-  border-radius: 8px;
   background: #fff;
   transition: box-shadow 0.3s ease;
+}
+
+.task-showcase:hover {
+  scale: 1.005;
 }
 
 .row {

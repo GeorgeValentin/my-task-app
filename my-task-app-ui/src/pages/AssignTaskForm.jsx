@@ -64,47 +64,63 @@ function AssignTaskForm() {
   if (!task) return <p>Loading...</p>;
 
   return (
-    <form onSubmit={handleSubmit}>
-      <h2>Edit Task: {task.title}</h2>
-      {/* Priority */}
-      <label>Priority</label>
-      <select
-        value={priority}
-        onChange={(e) => setPriority(e.target.value)}
-        required>
-        <option value="">Select priority</option>
-        {mockPriorities.map((priority) => (
-          <option key={priority.id} value={priority.name}>
-            {priority.name}
-          </option>
-        ))}
-      </select>
+    <form onSubmit={handleSubmit} className="text-center w-75 m-auto">
+      <h2 className="fw-bold pt-5 mb-3">Edit Task - {task.title}</h2>
 
-      {/* Assignment Control */}
-      <label>Assign to</label>
-      <select
-        value={assignedUser}
-        onChange={(e) => setAssignedUser(e.target.value)}>
-        <option value="">Select user</option>
-        {mockUsers.map((user) => (
-          <option key={user.id} value={user.name}>
-            {user.name}
-          </option>
-        ))}
-      </select>
+      <div className="d-flex justify-content-center align-items-center flex-column w-50 m-auto">
+        <div className="w-100 m-auto p-2 mb-2 d-flex flex-row align-items-center gap-2">
+          <label>Status:</label>
+          <select
+            className="w-75 m-auto p-2 text-center"
+            value={priority}
+            onChange={(e) => setPriority(e.target.value)}
+            required>
+            <option value="">Choose priority</option>
+            {mockPriorities.map((priority) => (
+              <option key={priority.id} value={priority.name}>
+                {priority.name}
+              </option>
+            ))}
+          </select>
+        </div>
 
-      <label>Status:</label>
-      <select
-        value={status}
-        onChange={(e) => setStatus(e.target.value)}
-        required>
-        <option value="" disabled>
-          Select status
-        </option>
-        <option value="incomplete">Incomplete</option>
-        <option value="complete">Complete</option>
-      </select>
-      <button type="submit">Update Task</button>
+        <div className="w-100 m-auto p-2 mb-2 d-flex flex-row align-items-center gap-2">
+          <label>Status:</label>
+
+          <select
+            className="w-75 m-auto p-2 text-center"
+            value={assignedUser}
+            onChange={(e) => setAssignedUser(e.target.value)}>
+            <option value="">Assign</option>
+            {mockUsers.map((user) => (
+              <option key={user.id} value={user.name}>
+                {user.name}
+              </option>
+            ))}
+          </select>
+        </div>
+
+        <div className="w-100 m-auto p-2 mb-3 d-flex flex-row align-items-center gap-2">
+          <label>Status:</label>
+          <select
+            className="w-75 m-auto p-2 text-center"
+            value={status}
+            onChange={(e) => setStatus(e.target.value)}
+            required>
+            <option value="" disabled>
+              Select status
+            </option>
+            <option value="incomplete">Incomplete</option>
+            <option value="complete">Complete</option>
+          </select>
+        </div>
+      </div>
+
+      <button
+        className="btn btn-primary border border-2 border-primary fw-bold"
+        type="submit">
+        Update Task
+      </button>
       {error && <p style={{ color: 'red' }}>{error}</p>}
     </form>
   );

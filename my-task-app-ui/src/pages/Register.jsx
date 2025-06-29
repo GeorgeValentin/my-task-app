@@ -13,7 +13,6 @@ function Register() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // Call register helper
     const success = register(username, password);
 
     if (success) {
@@ -25,27 +24,33 @@ function Register() {
   };
 
   return (
-    <div>
-      <h2>Register</h2>
+    <div className="text-center pt-5 w-50 m-auto">
+      <h2 className="fw-bold mb-3">Register</h2>
       {error && <p style={{ color: 'red' }}>{error}</p>}
       <form onSubmit={handleSubmit}>
         <input
+          className="w-75 m-auto mb-3 p-2"
           type="text"
           placeholder="Username"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
           required
         />
-        <br />
         <input
+          className="w-75 m-auto mb-3 p-2"
           type="password"
           placeholder="Password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           required
         />
-        <br />
-        <button type="submit">Register</button>
+        <div>
+          <button
+            className="btn btn-dark border border-3 border-dark fw-bold fs-6"
+            type="submit">
+            Register
+          </button>
+        </div>
       </form>
     </div>
   );

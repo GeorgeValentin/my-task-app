@@ -28,27 +28,35 @@ function Login() {
   };
 
   return (
-    <div>
-      <h2>Login</h2>
+    <div className="text-center pt-5 w-50 m-auto">
+      <h2 className="fw-bold mb-3">Login</h2>
       {error && <p style={{ color: 'red' }}>{error}</p>}
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className="d-flex flex-column">
         <input
+          className="w-75 m-auto mb-3 p-2"
           type="text"
           placeholder="Username"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
           required
         />
-        <br />
+
         <input
+          className="w-75 m-auto mb-3 p-2"
           type="password"
           placeholder="Password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           required
         />
-        <br />
-        <button type="submit">Login</button>
+
+        <div>
+          <button
+            className="btn btn-outline-dark border border-3 border-dark fw-bold fs-6"
+            type="submit">
+            Sign In
+          </button>
+        </div>
       </form>
     </div>
   );
