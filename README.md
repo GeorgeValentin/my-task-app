@@ -20,6 +20,20 @@
 
 #### Architecture
 
-##### 1. For the Front-End I have used state management for the tasks, by leveraging the React Context functionality, and wrapping the app inside it so that I can easily manage the state of the tasks after each section, as well as the state of the authentication. I have also used other hooks such as useState to set the state locally inside components, useNavigate to redirect the user, useEffect for retrieving the data from the backend by calling the api route needed
+##### 1. For the Front-End I have done the following:
 
-##### 2. For the Back-End I have created api routes for the tasks, validated the input that comes in from the front-end using middlewares, as well as integrated the firebase firestore database so that I can store and retrieve the data after I have manipulated it
+##### \* I have used state management for the tasks and the authentication system, by leveraging the React Context functionality
+
+##### \* I have also used useState to set the state locally inside components
+
+##### \* I have used the useNavigate hook to redirect the user to a different page
+
+##### \* There is also the useEffect hook, which I have used for retrieving the data from the backend by calling the api route needed
+
+##### 2. For the Back-End I have done the following:
+
+##### \* created api routes for the tasks
+
+##### \* validated the input that comes in from the front-end using middlewares
+
+##### \* integrated the firebase firestore database so that I can store and retrieve the data after I have manipulated it
