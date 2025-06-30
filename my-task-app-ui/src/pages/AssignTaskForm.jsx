@@ -69,7 +69,7 @@ function AssignTaskForm() {
 
       <div className="d-flex justify-content-center align-items-center flex-column w-50 m-auto">
         <div className="w-100 m-auto p-2 mb-2 d-flex flex-row align-items-center gap-2">
-          <label>Status:</label>
+          <label>Priority:</label>
           <select
             className="w-75 m-auto p-2 text-center"
             value={priority}
@@ -85,7 +85,7 @@ function AssignTaskForm() {
         </div>
 
         <div className="w-100 m-auto p-2 mb-2 d-flex flex-row align-items-center gap-2">
-          <label>Status:</label>
+          <label>Assign:</label>
 
           <select
             className="w-75 m-auto p-2 text-center"
